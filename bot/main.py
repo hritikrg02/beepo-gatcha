@@ -4,7 +4,10 @@
 
 import discord
 
-TOKEN = ""
+from utils import get_token
+
+TOKEN_FILE = "token.txt"
+TOKEN = get_token(TOKEN_FILE)
 
 intents = discord.Intents.default()
 intents.message_content = True
