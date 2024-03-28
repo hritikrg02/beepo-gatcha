@@ -6,7 +6,7 @@ import discord
 
 from utils import get_token
 
-TOKEN_FILE = "token.txt"
+TOKEN_FILE = "bot/token.txt"
 TOKEN = get_token(TOKEN_FILE)
 
 intents = discord.Intents.default()
