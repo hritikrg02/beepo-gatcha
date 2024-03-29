@@ -26,6 +26,8 @@ ACCESSORY_IMAGES = [
     Image.open(img) for img in glob(f"{ACCESSORY_IMAGES_DIR}{EXTENSION}")
 ]
 
+CALLABLE_ROLE = "Eboard"
+
 # discord stuff
 
 intents = discord.Intents.default()
@@ -41,7 +43,10 @@ async def on_ready():
 
 
 @bot.command()
-async def roll(ctx):
+async def roll(ctx: discord.ext.commands.Context):
+    if ctx.author.top_role.name != CALLABLE_ROLE:
+        return
+
     composite = generate_image(BASE_IMAGES, ACCESSORY_IMAGES)
 
     buffer = BytesIO()
