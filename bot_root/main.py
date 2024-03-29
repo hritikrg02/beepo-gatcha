@@ -43,6 +43,21 @@ async def on_ready():
 
 
 @bot.command()
+async def reset(ctx: discord.ext.commands.Context):
+    if ctx.author.top_role.name != CALLABLE_ROLE:
+        return
+
+    # this physically pains me as a programmer to do
+    global BASE_IMAGES
+    global ACCESSORY_IMAGES
+
+    BASE_IMAGES = [Image.open(img) for img in glob(f"{BASE_IMAGES_DIR}{EXTENSION}")]
+    ACCESSORY_IMAGES = [
+        Image.open(img) for img in glob(f"{ACCESSORY_IMAGES_DIR}{EXTENSION}")
+    ]
+
+
+@bot.command()
 async def roll(ctx: discord.ext.commands.Context):
     if ctx.author.top_role.name != CALLABLE_ROLE:
         return
