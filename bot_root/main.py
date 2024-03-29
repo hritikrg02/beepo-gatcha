@@ -45,6 +45,8 @@ async def on_ready():
 
 @bot.command()
 async def reset(ctx: discord.ext.commands.Context):
+    logger.debug("Reset initiated.")
+
     if ctx.author.top_role.name != CALLABLE_ROLE:
         logger.warning(f"User {ctx.author} does not have role {CALLABLE_ROLE}.")
         return
@@ -64,6 +66,8 @@ async def reset(ctx: discord.ext.commands.Context):
 
 @bot.command()
 async def roll(ctx: discord.ext.commands.Context):
+    logger.debug("Roll initiated.")
+
     if ctx.author.top_role.name != CALLABLE_ROLE:
         logger.warning(f"User {ctx.author} does not have role {CALLABLE_ROLE}.")
         return
