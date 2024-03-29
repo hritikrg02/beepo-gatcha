@@ -13,8 +13,8 @@ def get_token(token_file):
 
 
 def generate_image(base_images: list[Image.Image], accessory_images: list[Image.Image]):
-    background = choice(base_images)
-    foreground = choice(accessory_images)
+    background = choice(base_images).convert('RGBA')
+    foreground = choice(accessory_images).convert('RGBA')
 
     background_size = background.size
     placement = background_size[0] // 4, background_size[1] // 4
