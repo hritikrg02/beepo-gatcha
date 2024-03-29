@@ -8,7 +8,7 @@ from random import choice
 
 
 def get_token(token_file):
-    logger.debug("Initiating token get.")
+    logger.info("Initiating token get.")
     try:
         with open(token_file, "r") as f:
             token = f.read().rstrip()
@@ -22,14 +22,17 @@ def get_token(token_file):
 
 
 def generate_image(base_images: list[Image.Image], accessory_images: list[Image.Image]):
+    logger.info("Generate image initiated.")
+
     background = choice(base_images).convert('RGBA')
     foreground = choice(accessory_images).convert('RGBA')
+    logger.debug(f"Foreground: {foreground.info}, background: {background.info}.")
 
     background_size = background.size
     placement = background_size[0] // 4, background_size[1] // 4
 
     composite = background.copy()
     composite.paste(foreground, placement, foreground)
-    # composite.save("images/composite/test.png")
 
+    logger.success("Composite image generated successfully.")
     return composite
