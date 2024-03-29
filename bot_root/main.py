@@ -4,6 +4,7 @@
 
 import discord
 from discord.ext import commands
+from loguru import logger
 from glob import glob
 from io import BytesIO
 from PIL import Image
@@ -39,29 +40,32 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"We have logged in as {bot.user}.")
+    logger.success(f"Log on successful as {bot.user}.")
 
 
 @bot.command()
 async def reset(ctx: discord.ext.commands.Context):
     if ctx.author.top_role.name != CALLABLE_ROLE:
+        logger.warning(f"User {ctx.author} does not have role {CALLABLE_ROLE}.")
         return
 
     # this physically pains me as a programmer to do
     global BASE_IMAGES
     global ACCESSORY_IMAGES
 
+    logger.debug("Regenerating image pool.")
     BASE_IMAGES = [Image.open(img) for img in glob(f"{BASE_IMAGES_DIR}{EXTENSION}")]
     ACCESSORY_IMAGES = [
         Image.open(img) for img in glob(f"{ACCESSORY_IMAGES_DIR}{EXTENSION}")
     ]
 
-    print(f"Image pool has been updated and reset.")
+    logger.success(f"Image pool has been updated and reset.")
 
 
 @bot.command()
 async def roll(ctx: discord.ext.commands.Context):
     if ctx.author.top_role.name != CALLABLE_ROLE:
+        logger.warning(f"User {ctx.author} does not have role {CALLABLE_ROLE}.")
         return
 
     composite = generate_image(BASE_IMAGES, ACCESSORY_IMAGES)
@@ -72,6 +76,7 @@ async def roll(ctx: discord.ext.commands.Context):
 
     f = discord.File(buffer, filename=COMPOSITE_FILENAME)
     await ctx.channel.send(file=f)
+    logger.success(f"File {COMPOSITE_FILENAME} sent.")
 
 
 bot.run(TOKEN)
