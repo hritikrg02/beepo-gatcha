@@ -7,7 +7,7 @@ from random import choice
 
 
 def get_token(token_file):
-    with open(token_file, 'r') as f:
+    with open(token_file, "r") as f:
         token = f.read().rstrip()
     return token
 
