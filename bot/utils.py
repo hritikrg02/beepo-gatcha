@@ -2,11 +2,14 @@
 # description:  contains utility functions used by the bot
 # author:       Hritik "Ricky" Gupta | hritikrg02@gmail.com
 
+from PIL import Image
+
+
 def get_token(token_file):
     with open(token_file, 'r') as f:
         token = f.read().rstrip()
     return token
 
 
-def generate_image():
+def generate_image(base_dir, accessory_dir):
     pass
