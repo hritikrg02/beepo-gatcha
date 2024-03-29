@@ -39,7 +39,7 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"We have logged in as {bot.user}")
+    print(f"We have logged in as {bot.user}.")
 
 
 @bot.command()
@@ -55,6 +55,8 @@ async def reset(ctx: discord.ext.commands.Context):
     ACCESSORY_IMAGES = [
         Image.open(img) for img in glob(f"{ACCESSORY_IMAGES_DIR}{EXTENSION}")
     ]
+
+    print(f"Image pool has been updated and reset.")
 
 
 @bot.command()
