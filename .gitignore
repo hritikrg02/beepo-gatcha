@@ -50,5 +50,6 @@ Thumbs.db
 *.mov
 *.wmv
 
-# Private Tokens
+# Specific to this project
 bot_root/token.txt
+images
