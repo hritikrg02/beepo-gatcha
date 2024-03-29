@@ -8,6 +8,8 @@ from io import BytesIO
 from PIL import Image
 from utils import get_token, generate_image
 
+# constants
+
 TOKEN_FILE = "bot/token.txt"
 TOKEN = get_token(TOKEN_FILE)
 
@@ -19,6 +21,8 @@ COMPOSITE_FILENAME = "composite.png"
 
 BASE_IMAGES = [Image.open(img) for img in glob(f"{BASE_IMAGES_DIR}{EXTENSION}")]
 ACCESSORY_IMAGES = [Image.open(img) for img in glob(f"{ACCESSORY_IMAGES_DIR}{EXTENSION}")]
+
+# discord stuff
 
 intents = discord.Intents.default()
 intents.message_content = True
