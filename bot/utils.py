@@ -16,8 +16,11 @@ def generate_image(base_images: list[Image.Image], accessory_images: list[Image.
     background = choice(base_images)
     foreground = choice(accessory_images)
 
+    background_size = background.size
+    placement = background_size[0] // 4, background_size[1] // 4
+
     composite = background.copy()
-    composite.paste(foreground, (0, 0), foreground)
+    composite.paste(foreground, placement, foreground)
     # composite.save("images/composite/test.png")
 
     return composite
