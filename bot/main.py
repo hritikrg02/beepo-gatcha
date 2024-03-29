@@ -3,7 +3,8 @@
 # author:       Hritik "Ricky" Gupta | hritikrg02@gmail.com
 
 import discord
-from os import listdir
+from glob import glob
+from PIL import Image
 from utils import get_token
 
 TOKEN_FILE = "bot/token.txt"
@@ -11,9 +12,10 @@ TOKEN = get_token(TOKEN_FILE)
 
 BASE_IMAGES_DIR = "images/base/"
 ACCESSORY_IMAGES_DIR = "images/accessory/"
+EXTENSION = "*.png"
 
-BASE_IMAGES = listdir(BASE_IMAGES_DIR)
-ACCESSORY_IMAGES = listdir(ACCESSORY_IMAGES_DIR)
+BASE_IMAGES = [Image.open(img) for img in glob(f"{BASE_IMAGES_DIR}{EXTENSION}")]
+ACCESSORY_IMAGES = [Image.open(img) for img in glob(f"{ACCESSORY_IMAGES_DIR}{EXTENSION}")]
 
 intents = discord.Intents.default()
 intents.message_content = True
