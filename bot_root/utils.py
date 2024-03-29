@@ -13,7 +13,7 @@ def get_token(token_file):
         with open(token_file, "r") as f:
             token = f.read().rstrip()
 
-    except Exception:
+    except Exception:  # yes ik this is too broad, no I don't care enough to fix it
         logger.error("Issue when reading token file.")
         return
 
