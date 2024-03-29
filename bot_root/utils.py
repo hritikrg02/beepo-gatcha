@@ -24,9 +24,13 @@ def get_token(token_file):
 def generate_image(base_images: list[Image.Image], accessory_images: list[Image.Image]):
     logger.info("Generate image initiated.")
 
-    background = choice(base_images).convert('RGBA')
-    foreground = choice(accessory_images).convert('RGBA')
-    logger.debug(f"Foreground: {foreground.info}, background: {background.info}.")
+    background = choice(base_images)
+    foreground = choice(accessory_images)
+
+    bg_name = background.filename
+    fg_name = foreground.filename
+
+    logger.debug(f"Background: {bg_name}, foreground: {fg_name}.")
 
     background_size = background.size
     placement = background_size[0] // 4, background_size[1] // 4
