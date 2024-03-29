@@ -3,10 +3,11 @@
 # author:       Hritik "Ricky" Gupta | hritikrg02@gmail.com
 
 import discord
+from discord.ext import commands
 from glob import glob
 from io import BytesIO
 from PIL import Image
-from discord.ext import commands
+
 from utils import get_token, generate_image
 
 # constants
@@ -29,29 +30,34 @@ ACCESSORY_IMAGES = [
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
-client = discord.Client(intents=intents)
 bot = commands.Bot(command_prefix='$', intents=intents)
 
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f"We have logged in as {client.user}")
+    print(f"We have logged in as {bot.user}")
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+# @client.event
+# async def on_message(message):
+#     if message.author == client.user:
+#         return
+#
+#     composite = generate_image(BASE_IMAGES, ACCESSORY_IMAGES)
+#     buffer = BytesIO()
+#     composite.save(buffer, format="PNG")
+#     buffer.seek(0)
+#     f = discord.File(buffer, filename=COMPOSITE_FILENAME)
+#
+#     if message.content.startswith("$roll"):
+#         await message.channel.send(file=f)
 
-    composite = generate_image(BASE_IMAGES, ACCESSORY_IMAGES)
-    buffer = BytesIO()
-    composite.save(buffer, format="PNG")
-    buffer.seek(0)
-    f = discord.File(buffer, filename=COMPOSITE_FILENAME)
 
-    if message.content.startswith("$roll"):
-        await message.channel.send(file=f)
+@bot.command()
+async def ping(ctx):
+    await ctx.send("test")
 
 
-client.run(TOKEN)
+bot.run(TOKEN)
