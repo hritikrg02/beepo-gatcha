@@ -10,7 +10,7 @@ from utils import get_token, generate_image
 
 # constants
 
-TOKEN_FILE = "bot/token.txt"
+TOKEN_FILE = "bot_root/token.txt"
 TOKEN = get_token(TOKEN_FILE)
 
 BASE_IMAGES_DIR = "images/base/"

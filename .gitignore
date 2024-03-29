@@ -51,4 +51,4 @@ Thumbs.db
 *.wmv
 
 # Private Tokens
-bot/token.txt
+bot_root/token.txt
