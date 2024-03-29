@@ -40,24 +40,16 @@ async def on_ready():
     print(f"We have logged in as {bot.user}")
 
 
-# @client.event
-# async def on_message(message):
-#     if message.author == client.user:
-#         return
-#
-#     composite = generate_image(BASE_IMAGES, ACCESSORY_IMAGES)
-#     buffer = BytesIO()
-#     composite.save(buffer, format="PNG")
-#     buffer.seek(0)
-#     f = discord.File(buffer, filename=COMPOSITE_FILENAME)
-#
-#     if message.content.startswith("$roll"):
-#         await message.channel.send(file=f)
-
-
 @bot.command()
-async def ping(ctx):
-    await ctx.send("test")
+async def roll(ctx):
+    composite = generate_image(BASE_IMAGES, ACCESSORY_IMAGES)
+
+    buffer = BytesIO()
+    composite.save(buffer, format="PNG")
+    buffer.seek(0)
+
+    f = discord.File(buffer, filename=COMPOSITE_FILENAME)
+    await ctx.channel.send(file=f)
 
 
 bot.run(TOKEN)
