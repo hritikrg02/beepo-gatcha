@@ -2,13 +2,22 @@
 # description:  contains utility functions used by the bot.
 # author:       Hritik "Ricky" Gupta | hritikrg02@gmail.com
 
+from loguru import logger
 from PIL import Image
 from random import choice
 
 
 def get_token(token_file):
-    with open(token_file, "r") as f:
-        token = f.read().rstrip()
+    logger.debug("Initiating token get.")
+    try:
+        with open(token_file, "r") as f:
+            token = f.read().rstrip()
+
+    except Exception:
+        logger.error("Issue when reading token file.")
+        return
+
+    logger.success("Token successfully parsed.")
     return token
 
 
