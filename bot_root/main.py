@@ -6,6 +6,7 @@ import discord
 from glob import glob
 from io import BytesIO
 from PIL import Image
+from discord.ext import commands
 from utils import get_token, generate_image
 
 # constants
@@ -30,6 +31,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix='$', intents=intents)
 
 
 @client.event
