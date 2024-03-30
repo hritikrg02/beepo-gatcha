@@ -32,6 +32,9 @@ def generate_image(base_images: list[Image.Image], accessory_images: list[Image.
 
     logger.debug(f"Background: {bg_name}, foreground: {fg_name}.")
 
+    background = background.convert('RGBA')
+    foreground = foreground.convert('RGBA')
+
     background_size = background.size
     placement = background_size[0] // 4, background_size[1] // 4
 
