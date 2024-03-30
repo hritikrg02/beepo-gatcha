@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  gso-gacha:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app/beepo-gatcha/
+    container_name: gso-gacha
+    volumes:
+      - ../beepo-gatcha:/app/beepo-gatcha/
+
+
